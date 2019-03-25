@@ -19,7 +19,7 @@ int main(void)
 	found = NO;
 	i = 0;
 
-	printf("Enter some words:");
+	printf("Enter words:");
 
 	while ((c = getchar()) != EOF)
 	{
@@ -67,7 +67,7 @@ int palindrom(char buffer[], int i) // проверка на палиндром
 
 	while (flag == YES && counter/2 < i)
 	{
-		if (buffer[i-1] == buffer[j])
+		if (buffer[i-1] - 'A' == buffer[j] - 'A' || buffer[i-1] - 'A' == buffer[j] - 'a' || buffer[i-1] - 'a' == buffer[j] - 'a' || buffer[i-1] - 'a' == buffer[j] - 'A') 
 		{
 
 		}
