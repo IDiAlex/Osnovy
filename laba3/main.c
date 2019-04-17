@@ -8,83 +8,84 @@ int palindrom(char buffer[], int i);
 
 int main(void)
 {
-	int c;
-	int counter;
-	char WORD[MAXLINE];
-	int found;
-	int i;
-	int prev_c;
-
-	counter = 0;
-	found = NO;
-	i = 0;
-
-	printf("Enter words:");
-
-	while ((c = getchar()) != EOF)
-	{
-		if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c != ' ' && c != '.' && c != ',' && c != '\n' && c != '\t')) // проверяем,слово ли это
-		{
-			found = YES;
-		}
-		if (c == ' ' || c == '.' || c == ',' || c == '\n' || c == '\t') // конец слова
-		{
-			if (prev_c == ' ' || prev_c == '.' || prev_c == ',' || prev_c == '\n' || prev_c == '\t') // защита от повтора
-			{
-
-			}
-			else
-			{
-				if (found == NO)
-				{
-					counter = counter + palindrom(WORD, i);
-				}
-				found = NO;
-				i = 0;
-			}
-		}
-		else
-		{
-			WORD[i] = c;
-			++i;
-		}
-		prev_c = c;
-	}
-	printf("Result:%d", counter);
-
-	return 0;
+    int c;
+    int counter;
+    char WORD[MAXLINE];
+    int found;
+    int i;
+    int prev_c;
+    
+    prev_c = ' ';
+    counter = 0;
+    found = NO;
+    i = 0;
+    
+    printf("Enter some words:");
+    
+    while ((c = getchar()) != EOF)
+    {
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c != ' ' && c != '.' && c != ',' && c != '\n' && c != '\t')) // РїСЂРѕРІРµСЂРєР° РЅР° РЅРµ СЃР»РѕРІРѕ
+        {
+            found = YES;
+        }
+        if (c == ' ' || c == '.' || c == ',' || c == '\n' || c == '\t') // РЅР°С…РѕРґРёРј РєРѕРЅРµС† СЃР»РѕРІР°
+        {
+            if (prev_c == ' ' || prev_c == '.' || prev_c == ',' || prev_c == '\n' || prev_c == '\t') // Р·Р°С‰РёС‚Р° РѕС‚ РїРѕРІС‚РѕСЂР°
+            {
+                
+            }
+            else
+            {
+                if (found == NO)
+                {
+                    counter = counter + palindrom(WORD, i);
+                }
+                found = NO;
+                i = 0;
+            }
+        }
+        else
+        {
+            WORD[i] = c;
+            ++i;
+        }
+        prev_c = c;
+    }
+    printf("Result:%d", counter);
+    
+    return 0;
 }
 
-int palindrom(char buffer[], int i) // проверка на палиндром
+int palindrom(char buffer[], int i) // РјС‹ РїСЂРѕРІРµСЂСЏРµРј РЅР° РїР°Р»РёРЅРґСЂРѕРј
 {
-	int j;
-	int counter;
-	int flag;
-
-	flag = YES;
-	counter = i;
-	j = 0;
-
-	while (flag == YES && counter/2 < i)
-	{
-		if (buffer[i-1] - 'A' == buffer[j] - 'A' || buffer[i-1] - 'A' == buffer[j] - 'a' || buffer[i-1] - 'a' == buffer[j] - 'a' || buffer[i-1] - 'a' == buffer[j] - 'A') 
-		{
-
-		}
-		else
-		{
-			flag = NO;
-		}
-		--i;
-		++j;
-	}
-	if (flag == YES)
-	{
-		counter = 1;
-	}
-	else
-	{
-		counter = 0;
-	}
-	return counter;
+    int j;
+    int counter;
+    int flag;
+    
+    flag = YES;
+    counter = i;
+    j = 0;
+    
+    while (flag == YES && counter/2 < i)
+    {
+        if (buffer[i-1] - 'A' == buffer[j] - 'A' || buffer[i-1] - 'A' == buffer[j] - 'a' || buffer[i-1] - 'a' == buffer[j] - 'a' || buffer[i-1] - 'a' == buffer[j] - 'A')
+        {
+            
+        }
+        else
+        {
+            flag = NO;
+        }
+        --i;
+        ++j;
+    }
+    if (flag == YES)
+    {
+        counter = 1;
+    }
+    else
+    {
+        counter = 0;
+    }
+    return counter;
 }
