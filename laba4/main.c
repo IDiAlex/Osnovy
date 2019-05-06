@@ -7,20 +7,19 @@ void process_LINE(char buffer[]); // объ€вление функции
 
 int main(void)
 {
-	char LINE[MAXLINE]; // обэ€вление массива LINE
+	char LINE[MAXLINE]; // объ€вление массива LINE
 	printf("Enter words:\n");
 	gets(LINE); // считываем строки и вносим в массив LINE
 	process_LINE(LINE); // выполн€ем функцию
 	printf("Result: ");
 	puts(LINE); // выводим LINE
-
 	return 0;
 }
 
 void process_LINE(char buffer[]) // тело фукции
 {
 	int c; // текущий символ
-	int prev_c; // предыщущий символ
+	int prev_c; // предыдущий символ
 	int i; // позици€ символа
 	int post_i; // позици€ символа в конечном варианте
 	int j; // позици€ первого символа слова
