@@ -1,42 +1,36 @@
 #include <stdio.h>
 #define YES 1
 #define NO 0
-#define MAXLINE 1000
+#define max 1000
 
 int main(void)
 {
-	char LINE[MAXLINE]; // объ€вление массива LINE
-	int word; // защита от "не слов"
-	int c; // текущий  символ
-	int prev_c = NO; // предыдущий символ
-	int flag = NO; // признак начала нового слова
-	int found = NO; // признак повтора
-	int finish = NO; // конец файла
-	int d; // дл€ запоминани€ начала слова
-	int e; // дл€ сравнеи€
-	int len = 0;
+	char text[max]; // iauyaeaiea ianneaa text
+	int word; // caueoa io "ia neia"
+	int flag; // i?eciae ia?aea iiaiai neiaa
+	int found; // i?eciae iiaoi?a
+	int cnt = 0; // eiiao oaeea
+	int count = 0;
+	char *in; // oeacaoaeu ia oaeouee neiaie aoiaiie no?iee
+	char *out; // ...auoiaiie no?iee
+	char *nach; // oeacaoaeu ia ia?aei neiaa
+	char *ud;
+	char *idal;
 
-	char *in_ptr; // указатель на текущий символ входной строки
-	char *out_ptr; // ...выходной строки
-	char *word_ptr; // указатель на начало слова
-	char *dword_ptr;
-
-	in_ptr = LINE;
-	out_ptr = LINE;
-	word_ptr = LINE;
-	dword_ptr = LINE;
+	in = text;
+	out = text;
+	nach = text;
+	ud = text;
+	idal = text;
 
 	printf("Enter words: ");
-	gets(LINE); // считывание строки в массив LINE
+	fgets(text, max, stdin);; // n?eouaaiea no?iee a iannea text
 
-	do
+	while (*in != '\0')
 	{
-		c = *in_ptr;
-		d = *word_ptr;
-        e = *dword_ptr;
 
-		// начало защиты
-			if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && c != ' ' && c != '.' && c != ',' && c != '\n' && c != '\0' && c != '\t')
+		// ia?aei caueou
+			if ((*in < 'a' || *in > 'z') && (*in < 'A' || *in > 'Z') && *in != ' ' && *in != '.' && *in != ',' && *in != '\n' && *in != '\0' && *in != '\t')
 		{
 			word = NO;
 			break;
@@ -44,45 +38,79 @@ int main(void)
 		else
 		{
             word = YES;
-            break;
 		}
 
-        // конец защиты
+        // eiiao caueou
 
-        if ((c == ' ') && (c == '.') && (c == ',') && (c == '\n') && (c == '\0') && (c == '\t'))
-        {
-            in_ptr++;
-            if((c > 'a' || c < 'z') && (c > 'A' || c < 'Z'))
-                flag = YES;
-        }
 
-        if((flag == YES)&&(c != '\0'))
+
+        if ((*in == ' ') || (*in == '.') || (*in == ',') || (*in == '\n') || (*in == '\0') || (*in == '\t'))
         {
-            if(c == e)
+            printf("5\n");
+            in++;
+            if((*in > 'a' || *in < 'z') && (*in > 'A' || *in < 'Z'))
             {
-                dword_ptr++;
-                in_ptr++;
-                if((c == ' ') && (c == '.') && (c == ',') && (c == '\n') && (c == '\0') && (c == '\t')||(e == ' ') && (e == '.') && (e == ',') && (e == '\n') && (e == '\0') && (e == '\t'))
-                    found = YES;
+                flag = YES;
+                printf("6\n");
+            }
+        }
+        if(flag==NO)
+            cnt++;
+
+        if((flag == YES)&&(*in != '\0'))
+        {
+            printf("7\n");
+            if(*(in-cnt) == *in)
+            {
+                printf("8\n");
+                count++;
+                if(*(in-cnt+1)=' ')
+                {
+                    if(*(in+1)=' ')
+                    {
+                        found = YES;
+                        printf("10\n");
+                    }
+                }
                 else
+                {
+                    printf("9\n");
                     found = NO;
+                    out++;
+                }
+                if(found == YES)
+                 {
+                    printf("2\n");
+                    do
+                    {
+                        *(in-cnt) = ' ';
+                        cnt--;
+                    }
+                    while((in-cnt)<in);
+                    found = NO;
+                }
             }
             else
             {
+                cnt=0;
                 flag = NO;
-                e = d;
+                *out = *nach;
+                printf("1\n");
             }
         }
 
-        //if()
-        in_ptr++;
-	}
-	while ( e != '\0');
+        if(*in!='\0')
+        {
+           //printf("11\n");
+           in++;
+        }
+
+	 }
 
 	if (word == YES)
 	{
         printf("Result: ");
-        puts(LINE);
+        puts(text);
 	}
 	if (word == NO)
         printf("Sorry you entered a bad sign\n");
